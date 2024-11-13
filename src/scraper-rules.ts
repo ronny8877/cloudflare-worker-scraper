@@ -23,6 +23,25 @@ export const scraperRules: GetMetadataOptions[] = [
     ],
   },
   {
+    name: 'favicon',
+    multiple: true,
+    selectors: [
+      { selector: 'link[rel="icon"]', attribute: 'href' },
+      { selector: 'link[rel="shortcut icon"]', attribute: 'href' },
+      { selector: 'link[rel="apple-touch-icon"]', attribute: 'href' },
+      {
+        selector: 'link[rel="apple-touch-icon-precomposed"]',
+        attribute: 'href',
+      },
+      {
+        selector: 'link[rel="apple-touch-icon-precomposed"]',
+        attribute: 'href',
+      },
+      { selector: 'link[rel="mask-icon"]', attribute: 'href' },
+      { selector: 'link[rel="fluid-icon"]', attribute: 'href' },
+    ],
+  },
+  {
     name: 'description',
     multiple: false,
     selectors: [
@@ -54,7 +73,7 @@ export const scraperRules: GetMetadataOptions[] = [
   },
   {
     name: 'image',
-    multiple: false,
+    multiple: true,
     selectors: [
       {
         selector: 'link[rel="image_src"]',
@@ -82,18 +101,7 @@ export const scraperRules: GetMetadataOptions[] = [
       { selector: 'meta[itemprop="image"]', attribute: 'content' },
     ],
   },
-  {
-    name: 'feeds',
-    multiple: true,
-    selectors: [
-      {
-        selector: 'link[type="application/rss+xml"]',
-        attribute: 'href',
-      },
-      { selector: 'link[type="application/feed+json"]', attribute: 'href' },
-      { selector: 'link[type="application/atom+xml"]', attribute: 'href' },
-    ],
-  },
+
   {
     name: 'date',
     multiple: false,
@@ -113,20 +121,6 @@ export const scraperRules: GetMetadataOptions[] = [
       { selector: 'meta[property="og:locale"]', attribute: 'content' },
       { selector: 'meta[itemprop="inLanguage"]', attribute: 'content' },
       { selector: 'html', attribute: 'lang' },
-    ],
-  },
-  {
-    name: 'logo',
-    multiple: false,
-    selectors: [
-      { selector: 'meta[name="og:logo"]', attribute: 'content' },
-      { selector: 'meta[property="og:logo"]', attribute: 'content' },
-      { selector: 'meta[itemprop="logo"]', attribute: 'content' },
-      { selector: 'img[itemprop="logo"]', attribute: 'src' },
-      {
-        selector: 'link[rel="apple-touch-icon-precomposed"]',
-        attribute: 'href',
-      },
     ],
   },
   {
@@ -157,20 +151,20 @@ export const scraperRules: GetMetadataOptions[] = [
       },
     ],
   },
-  {
-    name: 'jsonld',
-    multiple: false,
-    selectors: [
-      {
-        selector: '#content #microformat script[type="application/ld+json"]',
-      },
-      {
-        selector:
-          'ytd-player-microformat-renderer script[type="application/ld+json"]',
-      },
-      {
-        selector: 'script[type="application/ld+json"]',
-      },
-    ],
-  },
+  // {
+  //   name: 'jsonld',
+  //   multiple: false,
+  //   selectors: [
+  //     {
+  //       selector: '#content #microformat script[type="application/ld+json"]',
+  //     },
+  //     {
+  //       selector:
+  //         'ytd-player-microformat-renderer script[type="application/ld+json"]',
+  //     },
+  //     {
+  //       selector: 'script[type="application/ld+json"]',
+  //     },
+  //   ],
+  // },
 ]

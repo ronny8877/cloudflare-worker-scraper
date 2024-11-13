@@ -92,9 +92,12 @@ class Scraper {
                 nextText = attrText
 
                 // If multiple, push to array, otherwise set as string
-                if (isMultiple) {
-                  Array.isArray(matches[name]) &&
-                    (matches[name] as string[]).push(cleanText(nextText))
+                if (Array.isArray(matches[name])) {
+                  const cleanNextText = cleanText(nextText)
+                  //SO we don't get duplicates
+                  if (!(matches[name] as string[]).includes(cleanNextText)) {
+                    ;(matches[name] as string[]).push(cleanNextText)
+                  }
                 } else {
                   if (matches[name] === '') {
                     matches[name] = cleanText(nextText)
