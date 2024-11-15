@@ -1,6 +1,6 @@
 import uniqueRandomArray from 'unique-random-array'
 
-//Not using Mobile Agents and Older agents as some sites can throw errors if the user agent is too old or
+//Not using Mobile Agents and Older agents as some sites can throw errors if the user agent is too old
 const modernUserAgents = [
   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36',
   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',

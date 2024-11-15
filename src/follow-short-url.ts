@@ -11,7 +11,8 @@ export const followShortUrl = async (
 ): Promise<FollowShortUrlResponse> => {
   const fetchResponse = await fetch(urls[urls.length - 1], {
     headers: {
-      referrer: 'http://www.google.com/',
+      Referer: 'https://www.google.com',
+      Origin: 'https://www.google.com',
       Accept:
         'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
       'Accept-Language': 'en-US,en;q=0.5',
