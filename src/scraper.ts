@@ -34,7 +34,7 @@ class Scraper {
       return generateErrorJSONResponse(error, url)
     }
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 4000);
+    const timeoutId = setTimeout(() => controller.abort(), 3500);
   
     try {
       this.response = await fetch(this.unshortenedInfo.unshortened_url || url, {
@@ -52,7 +52,7 @@ class Scraper {
       });
     } catch (error: any) {
       if (error.name === 'AbortError') {
-        throw new Error(`Request timed out after 4 seconds`)
+        throw new Error(`Request timed out after 3 seconds`)
       } else {
         console.error('Fetch request failed', error);
       }
