@@ -33,16 +33,32 @@ class Scraper {
     } catch (error) {
       return generateErrorJSONResponse(error, url)
     }
-    this.response = await fetch(this.unshortenedInfo.unshortened_url || url, {
-      headers: {
-        'User-Agent': randomUserAgent(),
-        Referer: 'https://www.google.com',
-        Origin: 'https://www.google.com',
-        Accept:
-          'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
-        'Accept-Language': 'en-US,en;q=0.5',
-      },
-    })
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 4000);
+  
+    try {
+      this.response = await fetch(this.unshortenedInfo.unshortened_url || url, {
+        headers: {
+          'User-Agent': randomUserAgent(),
+          'Referer': 'https://www.google.com',
+          'Origin': 'https://www.google.com',
+          'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
+          'Accept-Language': 'en-US,en;q=0.5',
+          'Connection': 'keep-alive',
+          'DNT': '1', // Do Not Track Request Header
+          'Upgrade-Insecure-Requests': '1',
+        },
+        signal: controller.signal,
+      });
+    } catch (error: any) {
+      if (error.name === 'AbortError') {
+        throw new Error(`Request timed out after 4 seconds`)
+      } else {
+        console.error('Fetch request failed', error);
+      }
+    } finally {
+      clearTimeout(timeoutId);
+    }
 
     const server = this.response.headers.get('server')
 
@@ -53,7 +69,6 @@ class Scraper {
     if (isThisWorkerErrorNotErrorWithinScrapedSite) {
       throw new Error(`Status ${this.response.status} requesting ${url}`)
     }
-
     return this.response
   }
 

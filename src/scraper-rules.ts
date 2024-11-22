@@ -91,6 +91,10 @@ export const scraperRules: GetMetadataOptions[] = [
         selector: 'meta[property="og:image:secure_url"]',
         attribute: 'content',
       },
+      {
+        selector: 'meta[name="twitter:image"]', 
+        attribute: 'content', 
+      },
       { selector: 'meta[name="twitter:image:src"]', attribute: 'content' },
       {
         selector: 'meta[property="twitter:image:src"]',
@@ -121,6 +125,17 @@ export const scraperRules: GetMetadataOptions[] = [
       { selector: 'meta[property="og:locale"]', attribute: 'content' },
       { selector: 'meta[itemprop="inLanguage"]', attribute: 'content' },
       { selector: 'html', attribute: 'lang' },
+    ],
+  },{
+    name: 'audio',
+    multiple: false,
+    selectors: [
+      { selector: 'meta[name="og:audio"]', attribute: 'content' },
+      { selector: 'meta[property="og:audio"]', attribute: 'content' },
+      { selector: 'meta[name="og:audio:url"]', attribute: 'content' },
+      { selector: 'meta[property="og:audio:url"]', attribute: 'content' },
+      { selector: 'meta[name="og:audio:secure_url"]', attribute: 'content' },
+      { selector: 'meta[property="og:audio:secure_url"]', attribute: 'content' },
     ],
   },
   {
