@@ -22,10 +22,10 @@ const generateErrorJSONResponse = (error: unknown, url?: string) => {
 
   const pretty_site_name = prettySiteName(url) 
   const errorResp={
-    favicon:[`https://logo.clearbit.com/${pretty_site_name.toLocaleLowerCase()}`],
+    favicon:[`https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${url}&size=128`],
     title:pretty_site_name,
     url,
-    image:[`https://logo.clearbit.com/${pretty_site_name.toLocaleLowerCase()}`],
+    image:[`https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${url}&size=128`],
   }
   return generateJSONResponse({
     error: errorMessage,
